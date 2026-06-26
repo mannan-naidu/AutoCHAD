@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { UploadCloud, Zap } from 'lucide-react';
 
 const Hero = () => {
@@ -51,13 +52,13 @@ const Hero = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '20px' }}>
-            <button className="btn btn-primary pulse-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
+            <Link to="/generate" className="btn btn-primary pulse-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
               Get Started
-            </button>
-            <button className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
+            </Link>
+            <Link to="/generate" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
               <UploadCloud size={20} />
-              Upload Demo
-            </button>
+              Try Demo
+            </Link>
           </div>
           
           <div style={{ marginTop: '40px', display: 'flex', gap: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>

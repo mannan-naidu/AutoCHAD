@@ -7,6 +7,7 @@ import Products from './components/Products';
 import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
+import Generate from './components/Generate';
 
 function LandingPage() {
   return (
@@ -24,11 +25,22 @@ function LandingPage() {
   );
 }
 
+function GeneratePage() {
+  return (
+    <>
+      <Navbar />
+      <Generate />
+      <Footer />
+    </>
+  );
+}
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/generate" element={<GeneratePage />} />
       </Routes>
     </Router>
   );

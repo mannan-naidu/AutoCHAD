@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from pydantic import BaseModel
 import os
 
@@ -45,14 +45,14 @@ async def generate_dxf(payload: GenerateRequest):
         print("Generating DXF...")
         output_filepath = DXFService.generate_dxf(validated_schema)
         print("DXF Path:", output_filepath)
-        
-        return {
-            "status": "success",
-            "message": "DXF File generated successfully complying with BPE/GMP principles.",
-            "file_path": output_filepath,
-            "intent": intent,
-            "parsed_schema": validated_schema.dict()
-        }
+
+        filename = os.path.basename(output_filepath)
+        return FileResponse(
+            path=output_filepath,
+            media_type="application/dxf",
+            filename=filename,
+            headers={"X-Intent": str(intent)},
+        )
 
     except ValueError as ve:
         error_msg = f"Validation Error: {str(ve)}"

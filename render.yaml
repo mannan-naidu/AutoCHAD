@@ -1,0 +1,30 @@
+services:
+  # ── Backend: FastAPI ──────────────────────────────────────────────
+  - type: web
+    name: autochad-api
+    runtime: python
+    rootDir: AutoCHAD/backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false          # set this manually in the Render dashboard
+      - key: ALLOWED_ORIGINS
+        sync: false          # set to your frontend URL, e.g. https://autochad.onrender.com
+
+  # ── Frontend: React/Vite static site ─────────────────────────────
+  - type: web
+    name: autochad
+    runtime: static
+    rootDir: AutoCHAD
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # set to your backend URL, e.g. https://autochad-api.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
