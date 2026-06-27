@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "AutoCHAD/backend/**"
+  workflow_dispatch:
 
 jobs:
   sync:
