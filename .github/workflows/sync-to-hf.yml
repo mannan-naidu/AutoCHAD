@@ -1,0 +1,39 @@
+name: Sync backend to Hugging Face Space
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "AutoCHAD/backend/**"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push backend folder to HF Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions"
+
+          # Clone the HF Space repo
+          git clone https://mannan-naidu:$HF_TOKEN@huggingface.co/spaces/mannan-naidu/autochad-api hf_space
+
+          # Wipe old contents (except .git)
+          find hf_space -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+          # Copy backend files in
+          cp -r AutoCHAD/backend/. hf_space/
+
+          # Commit and push
+          cd hf_space
+          git add -A
+          git diff --cached --quiet || git commit -m "Sync from GitHub @ ${{ github.sha }}"
+          git push
