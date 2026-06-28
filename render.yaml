@@ -3,6 +3,7 @@ services:
   - type: web
     name: autochad-api
     runtime: python
+    plan: free
     rootDir: AutoCHAD/backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
@@ -15,7 +16,8 @@ services:
   # ── Frontend: React/Vite static site ─────────────────────────────
   - type: web
     name: autochad
-    runtime: static
+    env: static
+    plan: free
     rootDir: AutoCHAD
     buildCommand: npm install && npm run build
     staticPublishPath: dist

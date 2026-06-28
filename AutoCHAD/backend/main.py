@@ -1,7 +1,12 @@
 import os
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import generate
+
+if not os.getenv("GROQ_API_KEY"):
+    print("FATAL: GROQ_API_KEY environment variable is not set.", file=sys.stderr)
+    sys.exit(1)
 
 app = FastAPI(title="AutoCHAD Engine API", version="1.0.0")
 
