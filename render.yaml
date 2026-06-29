@@ -5,6 +5,7 @@ services:
     runtime: python
     plan: free
     rootDir: AutoCHAD/backend
+    pythonVersion: "3.11.0"
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
