@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Hexagon, LogIn } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

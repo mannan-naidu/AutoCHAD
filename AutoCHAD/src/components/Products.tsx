@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Upload, Map as MapIcon, Aperture, Download } from 'lucide-react';
+import { useState } from 'react';
+import { Upload, Map as MapIcon, Aperture } from 'lucide-react';
 
 const Products = () => {
   const [activeTab, setActiveTab] = useState('pharma');

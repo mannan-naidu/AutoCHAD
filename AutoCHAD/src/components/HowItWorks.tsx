@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FileUp, Cpu, PencilRuler, Download } from 'lucide-react';
 
 const HowItWorks = () => {

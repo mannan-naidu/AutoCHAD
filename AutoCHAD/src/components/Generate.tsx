@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { UploadCloud, Zap, Download, AlertCircle, Loader } from 'lucide-react';
+import { useState } from 'react';
+import { Zap, Download, AlertCircle, Loader } from 'lucide-react';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 

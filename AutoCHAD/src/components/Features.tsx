@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Cpu, Maximize, Clock, ShieldCheck } from 'lucide-react';
 
 const Features = () => {
